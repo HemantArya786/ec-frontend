@@ -28,15 +28,17 @@ function SignUp() {
   };
 
   return (
-    <main>
+    <main className="">
       <div className="flex justify-center font-semibold">
-        <p className=" text-7xl pb-10"> Create your account...!</p>
+        <p className=" text-7xl pb-10">
+          Create your<span className=" text-orange-400"> account...!</span>
+        </p>
       </div>
       <div className="flex">
         <section className="w-1/2 ">
           <div className="flex justify-center items-center h-full">
             <img
-              className=" h-auto border w-10/12"
+              className=" h-full rounded w-10/12"
               src={signUpImage}
               alt="not found"
             />
@@ -53,32 +55,35 @@ function SignUp() {
               <input
                 type=""
                 placeholder=" first name"
-                className="border h-16 "
+                className="border h-16 text-xl rounded"
                 {...register("firstName")}
               />
               <input
                 type=""
-                className="border h-16  "
+                className="border h-16 text-xl rounded  "
                 placeholder=" last name"
                 {...register("lastName")}
               />
               <input
-                className="border h-16 "
+                className="border h-16 text-xl rounded"
                 placeholder="  email"
                 {...register("email")}
               />
               <input
-                className="border h-16 "
+                className="border h-16 text-xl rounded"
                 placeholder="  create password"
                 {...register("password")}
               />
               <input
-                className="border h-16 "
+                className="border h-16 text-xl rounded"
                 placeholder="  phone number"
                 {...register("phone")}
               />
-              <button type="submit" className="border h-16">
-                submit
+              <button
+                type="submit"
+                className="border h-16 text-xl font-semibold rounded bg-orange-400"
+              >
+                Submit
               </button>
             </form>
           </div>

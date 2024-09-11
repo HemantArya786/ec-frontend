@@ -1,8 +1,8 @@
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
-import Logo from "../../src/image/cartLogo.png";
 import { Link } from "react-router-dom";
+import LogoImage from "../image/logo.jpg";
 
 function Navbar() {
   return (
@@ -10,7 +10,7 @@ function Navbar() {
     <main className="h-24 flex items-center  mb-10 shadow   ">
       <section className=" w-1/3">
         <Link to="/">
-          <img className="w-20  h-20  ms-28 " src={Logo} alt="not found" />
+          <img className="w-20  h-20  ms-28 " src={LogoImage} alt="not found" />
         </Link>
       </section>
       <section className=" w-1/3">
