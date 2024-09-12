@@ -54,34 +54,34 @@ function SignUp() {
             >
               <input
                 type=""
-                placeholder=" first name"
-                className="border h-16 text-xl rounded"
+                placeholder="First name"
+                className="border h-16 text-xl rounded ps-4"
                 {...register("firstName")}
               />
               <input
                 type=""
-                className="border h-16 text-xl rounded  "
-                placeholder=" last name"
+                className="border h-16 text-xl rounded ps-4 "
+                placeholder="Last name"
                 {...register("lastName")}
               />
               <input
-                className="border h-16 text-xl rounded"
-                placeholder="  email"
+                className="border h-16 text-xl rounded ps-4"
+                placeholder="Email"
                 {...register("email")}
               />
               <input
-                className="border h-16 text-xl rounded"
-                placeholder="  create password"
+                className="border h-16 text-xl rounded ps-4"
+                placeholder="Create password"
                 {...register("password")}
               />
               <input
-                className="border h-16 text-xl rounded"
-                placeholder="  phone number"
+                className="border h-16 text-xl rounded ps-4"
+                placeholder="Phone number"
                 {...register("phone")}
               />
               <button
                 type="submit"
-                className="border h-16 text-xl font-semibold rounded bg-orange-400"
+                className="border h-16 text-2xl font-semibold rounded  bg-orange-400"
               >
                 Submit
               </button>

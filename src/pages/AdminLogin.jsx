@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import signUpImage from "../image/cart.jpg";
 import { Link } from "react-router-dom";
 
-function Login() {
+function AdminLogin() {
   const { register, handleSubmit, reset } = useForm();
 
   const submitDataofUser = (data) => {
@@ -11,7 +11,7 @@ function Login() {
     reset();
 
     axios
-      .post(`http://localhost:3000/login`, {
+      .post(`http://localhost:3000/`, {
         email: data.email,
         password: data.password,
       })
@@ -29,7 +29,7 @@ function Login() {
     <main>
       <div className="flex justify-center text-7xl font-semibold pb-10 ">
         <p>
-          Welcome <span className=" text-purple-400">back</span>...!
+          Welcome <span className=" text-purple-400">back seller</span>...!
         </p>
       </div>
       <div className="flex">
@@ -81,4 +81,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default AdminLogin;

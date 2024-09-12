@@ -15,25 +15,25 @@ function Navbar() {
       </section>
       <section className=" w-1/3">
         <input
-          className="h-12 w-full bg-gray-200 rounded-sm "
-          placeholder="  search"
+          className="h-12 w-full bg-gray-200 text-xl rounded-sm ps-4 "
+          placeholder="search"
         />
       </section>
       <section className="flex  w-1/3 h-12 items-center  gap-20 justify-center">
         <div>
-          <p className="">
+          <Link to="/login" className="">
             <PersonOutlineIcon />
-          </p>
+          </Link>
         </div>
         <div>
-          <p>
+          <Link>
             <FavoriteBorderIcon />
-          </p>
+          </Link>
         </div>
         <div>
-          <p>
+          <Link>
             <LocalMallIcon />
-          </p>
+          </Link>
         </div>
       </section>
     </main>
