@@ -2,6 +2,7 @@
 
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function Home() {
   const [productData, setProductData] = useState([]);
@@ -21,7 +22,11 @@ function Home() {
     <main>
       <div className=" flex flex-wrap justify-center space-x-4   space-y-4">
         {productData?.map((item) => (
-          <div id={item?._id} className=" w-64 h-80 hover:shadow-md	rounded	 ">
+          <Link
+            to={`/product/${item._id}`}
+            id={item?._id}
+            className=" w-64 h-80 hover:shadow-md	rounded	 "
+          >
             <div className="flex justify-center	m-4">
               <img
                 className="w-72 h-48 border"
@@ -44,7 +49,7 @@ function Home() {
                 <p>Rs. {item?.price}</p>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </main>
