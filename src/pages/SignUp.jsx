@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import signUpImage from "../image/shopping.jpg";
+import { Link } from "react-router-dom";
 
 function SignUp() {
   const { register, handleSubmit, reset } = useForm();
@@ -85,6 +86,14 @@ function SignUp() {
               >
                 Submit
               </button>
+              <div className=" flex justify-center flex-row">
+                <p>
+                  Already have an account..!{" "}
+                  <Link className=" text-orange-400" to="/login">
+                    Make me sigIn
+                  </Link>
+                </p>
+              </div>
             </form>
           </div>
         </section>

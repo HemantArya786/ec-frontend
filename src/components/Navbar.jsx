@@ -31,7 +31,7 @@ function Navbar() {
           </Link>
         </div>
         <div>
-          <Link>
+          <Link to={`/cart`}>
             <LocalMallIcon />
           </Link>
         </div>

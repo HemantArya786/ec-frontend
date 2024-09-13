@@ -1,10 +1,14 @@
+import { Button } from "@mui/material";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { UserDataContext } from "../App";
 
 function Product() {
   const [productData, setProductData] = useState();
   const { id } = useParams();
+
+  const { getUserDataId } = useContext(UserDataContext);
 
   useEffect(() => {
     axios
@@ -12,6 +16,15 @@ function Product() {
       .then((res) => setProductData(res?.data?.data))
       .catch((err) => console.log(err));
   }, []);
+
+  const addValueInCart = async (id) => {
+    await axios
+      .post(`http://localhost:3000/cart/addItem/${getUserDataId?._id}`, {
+        productId: id,
+      })
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  };
 
   return (
     <main className="flex " id={productData?._id}>
@@ -38,6 +51,16 @@ function Product() {
           <p className="text-md font-semibold p-4 ">
             Description : {productData?.description}{" "}
           </p>
+        </div>
+        <div className="flex border justify-around">
+          <Button>Buy</Button>
+          <Button
+            onClick={() => {
+              addValueInCart(productData._id);
+            }}
+          >
+            Add To Cart
+          </Button>
         </div>
       </section>
     </main>

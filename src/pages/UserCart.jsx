@@ -1,5 +1,11 @@
+import { useContext } from "react";
+import { UserDataContext } from "../App";
+
 function UserCart() {
-  return <div>UserCart</div>;
+  const { getUserDataId } = useContext(UserDataContext);
+
+  console.log(getUserDataId);
+  return <div>cart</div>;
 }
 
 export default UserCart;

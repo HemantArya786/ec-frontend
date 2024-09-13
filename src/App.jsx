@@ -8,21 +8,32 @@ import Footer from "./components/Footer";
 import SignUp from "./pages/SignUp";
 import AdminLogin from "./pages/AdminLogin";
 import Product from "./pages/Product";
+import { createContext, useState } from "react";
+import UserCart from "./pages/UserCart";
+
+export const UserDataContext = createContext();
 
 function App() {
+  const [getUserDataId, setGetUserDataId] = useState();
+
+  // console.log(getUserDataId, "batao is kya h");
+
   return (
-    <BrowserRouter>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        {/* <Route path="/products" element={<AllProduct />} /> */}
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/adminlogin" element={<AdminLogin />} />
-        <Route path="/product/:id" element={<Product />} />
-      </Routes>
-      <Footer />
-    </BrowserRouter>
+    <UserDataContext.Provider value={{ getUserDataId, setGetUserDataId }}>
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          {/* <Route path="/products" element={<AllProduct />} /> */}
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/adminlogin" element={<AdminLogin />} />
+          <Route path="/product/:id" element={<Product />} />
+          <Route path="/cart" element={<UserCart />} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
+    </UserDataContext.Provider>
   );
 }
 

@@ -2,12 +2,18 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import signUpImage from "../image/cart.jpg";
 import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { UserDataContext } from "../App";
 
 function Login() {
+  const [loginUserData, setLoginUserData] = useState();
   const { register, handleSubmit, reset } = useForm();
 
+  const { setGetUserDataId } = useContext(UserDataContext);
+
+  // console.log(setGetUserDataId, "explain");
+
   const submitDataofUser = (data) => {
-    console.log(data);
     reset();
 
     axios
@@ -15,13 +21,15 @@ function Login() {
         email: data.email,
         password: data.password,
       })
-      .then((res) => console.log(res))
+      .then((res) => setLoginUserData(res.data.data))
       .catch((err) => console.log(err));
+
+    setGetUserDataId(loginUserData);
   };
 
   const clickEnterButton = (e) => {
-    if (e.keyPress === "enter") {
-      submitDataofUser();
+    if (e.keyPress === "Enter") {
+      handleSubmit(submitDataofUser);
     }
   };
 
