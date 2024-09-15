@@ -10,13 +10,15 @@ import AdminLogin from "./pages/AdminLogin";
 import Product from "./pages/Product";
 import { createContext, useState } from "react";
 import UserCart from "./pages/UserCart";
+import UserPage from "./pages/UserPage";
+import Payment from "./pages/Payment";
 
 export const UserDataContext = createContext();
 
 function App() {
-  const [getUserDataId, setGetUserDataId] = useState();
+  const [getUserDataId, setGetUserDataId] = useState(null);
 
-  // console.log(getUserDataId, "batao is kya h");
+  console.log(getUserDataId, "batao is kya h");
 
   return (
     <UserDataContext.Provider value={{ getUserDataId, setGetUserDataId }}>
@@ -30,6 +32,8 @@ function App() {
           <Route path="/adminlogin" element={<AdminLogin />} />
           <Route path="/product/:id" element={<Product />} />
           <Route path="/cart" element={<UserCart />} />
+          <Route path="/profile" element={<UserPage />} />
+          <Route path="/payment" element={<Payment />} />
         </Routes>
         <Footer />
       </BrowserRouter>
