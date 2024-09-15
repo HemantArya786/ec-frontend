@@ -8,7 +8,7 @@ function UserPage() {
   const { getUserDataId } = useContext(UserDataContext);
 
   const onSubmitClicked = (data) => {
-    axios.put(`localhost:3000/update_user/${getUserDataId._id}`, {
+    axios.put(`http://localhost:3000/update_user/${getUserDataId._id}`, {
       fistname: data.firstName,
       lastname: data.lastName,
       email: data.email,
