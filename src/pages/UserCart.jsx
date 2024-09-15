@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 // import { UserDataContext } from "../App";
+import emptyImage from "../../src/image/emptyProduct.jpg";
+
 import axios from "axios";
 
 function UserCart() {
@@ -20,9 +22,12 @@ function UserCart() {
 
   const deleteItemFromCart = (id) => {
     axios
-      .delete(`http://localhost:3000/cart/removeitem/${viewCartData._id}`, {
-        productId: id,
-      })
+      .delete(
+        `http://localhost:3000/cart/removeitem/66e1dcfc4d992b2e81647f09`,
+        {
+          productId: id,
+        }
+      )
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   };
@@ -36,7 +41,7 @@ function UserCart() {
               <div className="flex  w-2/5 justify-center items-center">
                 <img
                   className="border h-40 w-40"
-                  src={item?.image}
+                  src={item?.image || emptyImage}
                   alt="not found"
                 />
               </div>
@@ -60,8 +65,8 @@ function UserCart() {
           </div>
         ))}
       </section>
-      <section className="w-2/5">
-        <div className="flex border justify-center p-5 text-xl font-bold">
+      <section className="w-2/5 ">
+        <div className="flex  justify-center p-5 text-xl font-bold">
           <p>Price Details</p>
         </div>
         {/* <div className="border">

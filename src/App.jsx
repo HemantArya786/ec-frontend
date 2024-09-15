@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Home from "./pages/Home";
 // import AllProduct from "./pages/AllProduct";
@@ -12,13 +12,12 @@ import { createContext, useState } from "react";
 import UserCart from "./pages/UserCart";
 import UserPage from "./pages/UserPage";
 import Payment from "./pages/Payment";
+import AddNewProduct from "./pages/AddNewProduct";
 
 export const UserDataContext = createContext();
 
 function App() {
   const [getUserDataId, setGetUserDataId] = useState(null);
-
-  console.log(getUserDataId, "batao is kya h");
 
   return (
     <UserDataContext.Provider value={{ getUserDataId, setGetUserDataId }}>
@@ -34,6 +33,8 @@ function App() {
           <Route path="/cart" element={<UserCart />} />
           <Route path="/profile" element={<UserPage />} />
           <Route path="/payment" element={<Payment />} />
+          <Route path="/admin/newproduct" element={<AddNewProduct />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
         <Footer />
       </BrowserRouter>

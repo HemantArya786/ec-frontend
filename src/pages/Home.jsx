@@ -3,6 +3,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import emptyImage from "../../src/image/emptyProduct.jpg";
 
 function Home() {
   const [productData, setProductData] = useState([]);
@@ -16,22 +17,20 @@ function Home() {
       });
   }, []);
 
-  console.log(productData);
-
   return (
     <main>
       <div className=" flex flex-wrap justify-center space-x-4   space-y-4">
         {productData?.map((item) => (
           <Link
             to={`/product/${item._id}`}
-            id={item?._id}
-            className=" w-64 h-80 hover:shadow-md	rounded	 "
+            key={item?._id}
+            className=" w-64 h-80 hover:shadow-md	rounded border	 "
           >
             <div className="flex justify-center	m-4">
               <img
                 className="w-72 h-48 border"
-                src={item?.image}
-                alt="not found"
+                src={item?.image || emptyImage}
+                alt="err"
               />
             </div>
             <div className=" flex  flex-col px-5 	 ">

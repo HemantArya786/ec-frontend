@@ -3,6 +3,7 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { UserDataContext } from "../App";
+import emptyImage from "../../src/image/emptyProduct.jpg";
 
 function Product() {
   const [productData, setProductData] = useState();
@@ -28,14 +29,14 @@ function Product() {
 
   return (
     <main className="flex " id={productData?._id}>
-      <section className="w-1/2 flex justify-center h-96 items-center border ">
+      <section className="w-1/2 flex justify-center h-96 items-center  ">
         <img
-          className=" h-80 w-full border"
-          src={productData?.image}
+          className=" h-full w-96 "
+          src={productData?.image || emptyImage}
           alt="image not found"
         />
       </section>
-      <section className="w-1/2 border h-96  ">
+      <section className="w-1/2  h-96  ">
         <div>
           <p className="text-5xl font-bold p-4 ">{productData?.productName}</p>
         </div>
@@ -52,15 +53,18 @@ function Product() {
             Description : {productData?.description}{" "}
           </p>
         </div>
-        <div className="flex border justify-around">
-          <Button>Buy</Button>
-          <Button
+        <div className="flex  gap-2">
+          <button className="w-1/3 border rounded py-3 text-xl font-bold bg-green-300">
+            Buy
+          </button>
+          <button
+            className="w-1/3 border rounded py-3 text-xl font-bold bg-yellow-300"
             onClick={() => {
               addValueInCart(productData._id);
             }}
           >
             Add To Cart
-          </Button>
+          </button>
         </div>
       </section>
     </main>
