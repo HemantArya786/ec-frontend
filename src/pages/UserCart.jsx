@@ -3,32 +3,43 @@ import { useEffect, useState } from "react";
 import emptyImage from "../../src/image/emptyProduct.jpg";
 
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 function UserCart() {
   const [viewCartData, setViewCartData] = useState(null);
   const [viewTotalCartPrice, setViewTotalCartPrice] = useState();
+  const [isTrigger, setIsTrigger] = useState(false);
+  // const [userData, setUserData] = useState();
+
+  const data = localStorage.getItem("userData");
+
+  // useEffect(() => {
+  //   setUserData(data);
+  // }, [data]);
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/cart/66e1dcfc4d992b2e81647f09")
+      .get(`http://localhost:3000/cart/${data}`)
       .then((res) => setViewCartData(res?.data?.data))
       .catch((err) => console.log(err));
 
     axios
-      .get(`http://localhost:3000/cart/totalprice/66e1dcfc4d992b2e81647f09`)
+      .get(`http://localhost:3000/cart/totalprice/${data}`)
       .then((res) => setViewTotalCartPrice(res?.data))
       .catch((err) => console.log(err));
-  }, []);
+  }, [data, isTrigger]);
 
   const deleteItemFromCart = (id) => {
     axios
-      .delete(
-        `http://localhost:3000/cart/removeitem/66e1dcfc4d992b2e81647f09`,
-        {
+      .delete(`http://localhost:3000/cart/removeitem/${data}`, {
+        data: {
           productId: id,
-        }
-      )
-      .then((res) => console.log(res))
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        setIsTrigger(!isTrigger);
+      })
       .catch((err) => console.log(err));
   };
 
@@ -36,21 +47,27 @@ function UserCart() {
     <main className="flex justify-center">
       <section className="w-3/5">
         {viewCartData?.userCart?.map((item) => (
-          <div key={item?._id} className="">
+          <div id={item?._id} key={item._id} className="">
             <div className=" flex justify-between  py-2  ">
-              <div className="flex  w-2/5 justify-center items-center">
+              <Link
+                to={`/product/${item._id}`}
+                className="flex  w-2/5 justify-center items-center"
+              >
                 <img
                   className="border h-40 w-40"
                   src={item?.image || emptyImage}
                   alt="not found"
                 />
-              </div>
-              <div className=" w-2/5 flex flex-col justify-center ">
+              </Link>
+              <Link
+                to={`/product/${item._id}`}
+                className=" w-2/5 flex flex-col justify-center "
+              >
                 <p className="text-xl font-semibold"> {item?.productName}</p>
                 <p className="text-sm">{item?.catagory}</p>
                 <p className="text-md font-semibold"> ₹{item?.price}</p>
                 <p className="text-sm">{item?.description}</p>
-              </div>
+              </Link>
               <div className="w-1/5  ">
                 <button
                   className="text-xl font-bold border px-4 py-2 rounded-full"

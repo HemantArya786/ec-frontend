@@ -1,15 +1,17 @@
-import { Button } from "@mui/material";
+// import { Button } from "@mui/material";
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { UserDataContext } from "../App";
 import emptyImage from "../../src/image/emptyProduct.jpg";
+import { useEffect, useState } from "react";
 
 function Product() {
   const [productData, setProductData] = useState();
   const { id } = useParams();
 
-  const { getUserDataId } = useContext(UserDataContext);
+  // const { getUserDataId } = useContext(UserDataContext);
+
+  const userId = localStorage.getItem("userData");
+  console.log(userId);
 
   useEffect(() => {
     axios
@@ -20,7 +22,7 @@ function Product() {
 
   const addValueInCart = async (id) => {
     await axios
-      .post(`http://localhost:3000/cart/addItem/${getUserDataId?._id}`, {
+      .post(`http://localhost:3000/cart/addItem/${userId}`, {
         productId: id,
       })
       .then((res) => console.log(res))

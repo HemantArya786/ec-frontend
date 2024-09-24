@@ -3,18 +3,18 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
 import { Link } from "react-router-dom";
 import LogoImage from "../image/logo.jpg";
-import { useEffect, useState } from "react";
-import axios from "axios";
+// import { useState } from "react";
+// import axios from "axios";
 
 function Navbar() {
-  const [searchValue, setSearchValue] = useState();
+  // const [searchValue, setSearchValue] = useState();
 
-  useEffect(() => {
-    axios
-      .post("http://localhost:3000/search", { search: searchValue })
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
-  }, [searchValue]);
+  // useEffect(() => {
+  //   axios
+  //     .post("http://localhost:3000/search", { search: searchValue })
+  //     .then((res) => console.log(res))
+  //     .catch((err) => console.log(err));
+  // }, [searchValue]);
 
   return (
     //fixed w-full
@@ -28,7 +28,7 @@ function Navbar() {
         <input
           className="h-12 w-full bg-gray-200 text-xl rounded-sm ps-4 "
           placeholder="search"
-          onChange={(e) => setSearchValue(e.target.value)}
+          // onChange={(e) => setSearchValue(e.target.value)}
         />
       </section>
       <section className="flex  w-1/3 h-12 items-center  gap-20 justify-center">

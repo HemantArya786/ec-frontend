@@ -1,20 +1,36 @@
-import { useContext } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { UserDataContext } from "../App";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function UserPage() {
   const { handleSubmit, register } = useForm();
-  const { getUserDataId } = useContext(UserDataContext);
+  const [userData, setUserData] = useState();
+
+  const navigate = useNavigate();
+
+  const userId = localStorage.getItem("userData");
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3000/users/${userId}`)
+      .then((res) => setUserData(res?.data?.data))
+      .catch((err) => console.log(err));
+  }, [userId]);
 
   const onSubmitClicked = (data) => {
-    axios.put(`http://localhost:3000/update_user/${getUserDataId._id}`, {
-      fistname: data.firstName,
-      lastname: data.lastName,
-      email: data.email,
-      phoneNumber: data.phone,
-      password: data.password,
+    axios.put(`http://localhost:3000/update_user/${userId}`, {
+      fistname: data.firstName || userData.firstname,
+      lastname: data.lastName || userData.lastname,
+      email: data.email || userData.email,
+      phoneNumber: data.phone || userData.phoneNumber,
+      password: data.password || userData.password,
     });
+  };
+
+  const logOut = () => {
+    navigate("/home");
+    localStorage.clear();
   };
 
   return (
@@ -29,31 +45,31 @@ function UserPage() {
         <input
           className="border py-3 text-2xl px-4 rounded"
           placeholder="first name"
-          defaultValue={getUserDataId?.firstName}
+          defaultValue={userData?.firstname}
           {...register("fristName")}
         />
         <input
           className="border py-3 text-2xl px-4 rounded"
           placeholder="last name"
-          defaultValue={getUserDataId?.lastName}
+          defaultValue={userData?.lastname}
           {...register("lastName")}
         />
         <input
           className="border py-3 text-2xl px-4 rounded"
           placeholder="email"
-          defaultValue={getUserDataId?.email}
+          defaultValue={userData?.email}
           {...register("email")}
         />
         <input
           className="border py-3 text-2xl px-4 rounded"
           placeholder="phone"
-          defaultValue={getUserDataId?.phone}
+          defaultValue={userData?.phoneNumber}
           {...register("phone")}
         />
         <input
           className="border py-3 text-2xl px-4 rounded"
           placeholder="password"
-          defaultValue={getUserDataId?.password}
+          defaultValue={userData?.password}
           {...register("password")}
         />
         <button
@@ -61,6 +77,12 @@ function UserPage() {
           className="border py-3 text-2xl font-semibold bg-blue-300 rounded"
         >
           Save Details
+        </button>
+        <button
+          className="border py-3 text-2xl font-semibold bg-blue-300 rounded"
+          onClick={logOut}
+        >
+          LogOut
         </button>
       </form>
     </main>

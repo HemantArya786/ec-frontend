@@ -18,7 +18,7 @@ function Footer() {
                 This is random Ecommerce Website Design for personal project
               </p>
             </div>
-            <div className=" gap-2 p-5 underline">
+            <div className=" gap-2 p-5 underline flex justify-around">
               <div className=" flex flex-col ">
                 <Link to="/login">login</Link>
                 <Link to="/sihnup">signUp</Link>
@@ -28,6 +28,7 @@ function Footer() {
                 <Link to="/">Home</Link>
                 <Link to="/cart">Cart</Link>
                 <Link to="/admin/newproduct">new product</Link>
+                <Link to="/payment">payment</Link>
               </div>
             </div>
           </div>

@@ -2,13 +2,25 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import signUpImage from "../image/cart.jpg";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
-import { UserDataContext } from "../App";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+  // const [loginUserData, setLoginUserData] = useState();
   const { register, handleSubmit, reset } = useForm();
+  const navigate = useNavigate();
 
-  const { setGetUserDataId } = useContext(UserDataContext);
+  let userId = localStorage.getItem("userData");
+  useEffect(() => {
+    if (userId) {
+      console.log("hsould redirect yes");
+      navigate("/profile");
+    }
+  }, [userId]);
+
+  // useEffect(() => {
+  //   localStorage.setItem("userData", JSON.stringify(loginUserData._id));
+  // }, [loginUserData]);
 
   const submitDataofUser = (data) => {
     reset();
@@ -18,7 +30,11 @@ function Login() {
         email: data.email,
         password: data.password,
       })
-      .then(async (res) => await setGetUserDataId(res.data.data))
+      .then((res) => {
+        console.log(res.data, "response after login api");
+        localStorage.setItem("userData", res?.data?.data?._id);
+        // setLoginUserData(res?.data?.data);
+      })
       .catch((err) => console.log(err));
   };
 
